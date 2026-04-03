@@ -69,7 +69,10 @@ autism-risk-detector/
 
 ```bash
 cd autism-risk-detector/backend
+py -3.11 -m venv venv_train
+.\venv_train\Scripts\Activate.ps1
 pip install -r requirements.txt
+pip install tensorflow
 ```
 
 ### 2. Start the API server
@@ -86,7 +89,12 @@ The API is now available at `http://127.0.0.1:8000`.
 
 ### 3. Open the frontend
 
-Open `frontend/index.html` directly in your browser — no build step required.
+Open up a second terminal and execute the following commands
+
+```bash
+cd "autism-risk-detector\frontend"
+python -m http.server 5500
+```
 
 ---
 
