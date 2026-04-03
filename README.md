@@ -1,4 +1,4 @@
-# Autism Risk Analysis Web App
+# AutiSENSE
 
 > **DISCLAIMER:** This project is for **educational purposes only**.
 > It does **not** provide any form of medical diagnosis.
