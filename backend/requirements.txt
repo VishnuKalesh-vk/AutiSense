@@ -1,0 +1,18 @@
+# ── Core API ─────────────────────────────────────────────────
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# ── Image Processing ─────────────────────────────────────────
+opencv-python>=4.9.0
+numpy>=1.26.0
+
+# ── Machine Learning (OPTIONAL) ───────────────────────────────
+# TensorFlow does not yet ship wheels for Python 3.12+.
+# The app runs without it: model_loader.py falls back to _DummyModel,
+# which returns random scores so the full API/UI flow still works.
+#
+# Install manually when a compatible wheel becomes available:
+#   pip install tensorflow
+#
+# tensorflow>=2.15.0
