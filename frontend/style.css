@@ -547,9 +547,188 @@ body {
   text-align: center;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── User info (avatar + name + logout) ─────────────────────── */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-strong);
+}
+
+.user-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-logout {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.72rem;
+  background: rgba(255, 82, 82, 0.1);
+  color: var(--high);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+  border-radius: 50px;
+}
+
+.btn-logout:hover:not(:disabled) {
+  background: rgba(255, 82, 82, 0.2);
+  box-shadow: none;
+  transform: none;
+}
+
 /* ═══════════════════════════════════════════════════════════
-   UTILITY
+   LOGIN PAGE
    ═══════════════════════════════════════════════════════════ */
+.login-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.login-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* Decorative background orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  background: rgba(79, 142, 247, 0.15);
+  top: -100px;
+  left: -100px;
+}
+
+.orb-2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(108, 99, 255, 0.12);
+  bottom: -80px;
+  right: -80px;
+}
+
+/* Login card */
+.login-card {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem 2.25rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  animation: fadeSlideIn 0.5s ease both;
+}
+
+/* Logo inside login card */
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.1rem;
+}
+
+.login-logo-icon { font-size: 2.2rem; line-height: 1; }
+
+.login-logo h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+.login-tagline {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.login-divider {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 2px;
+  margin: 0.6rem 0;
+}
+
+.login-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 300px;
+  margin-bottom: 0.5rem;
+}
+
+/* Wrapper to centre the Google button */
+.google-signin-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0.6rem 0;
+}
+
+.login-error {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #ff8a80;
+  background: rgba(255, 82, 82, 0.08);
+  border: 1px solid rgba(255, 82, 82, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  width: 100%;
+}
+
+.login-footer {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+.login-footer strong { color: var(--medium); }
+
 .hidden { display: none !important; }
 
 /* ═══════════════════════════════════════════════════════════
