@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — AutiSENSE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-body">
+
+  <div class="login-page">
+
+    <!-- Floating background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="login-card">
+
+      <!-- Logo -->
+      <div class="login-logo">
+        <span class="login-logo-icon">🧠</span>
+        <h1>Auti<span class="logo-accent">SENSE</span></h1>
+      </div>
+
+      <p class="login-tagline">Early autism pre-screening tool</p>
+
+      <div class="login-divider"></div>
+
+      <p class="login-desc">
+        Sign in with your Google account to access the analysis tool.
+        No registration needed — your Google account is all you need.
+      </p>
+
+      <!-- Google Sign-In button rendered here by GIS -->
+      <div id="googleSignInDiv" class="google-signin-wrapper"></div>
+
+      <!-- Error feedback -->
+      <p id="loginError" class="login-error hidden"></p>
+
+      <p class="login-footer">
+        By signing in you acknowledge this tool is for
+        <strong>educational purposes only</strong> and does not
+        provide medical diagnosis.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- Google Identity Services must load before auth.js -->
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
