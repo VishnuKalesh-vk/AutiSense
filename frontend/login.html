@@ -29,13 +29,12 @@
 
       <div class="login-divider"></div>
 
-      <p class="login-desc">
-        Sign in with your Google account to access the analysis tool.
-        No registration needed — your Google account is all you need.
-      </p>
-
-      <!-- Google Sign-In button rendered here by GIS -->
-      <div id="googleSignInDiv" class="google-signin-wrapper"></div>
+      <!-- Login form -->
+      <form id="loginForm" class="login-form" novalidate>
+        <input type="text" id="loginUser" class="login-input" placeholder="Username" autocomplete="username" />
+        <input type="password" id="loginPass" class="login-input" placeholder="Password" autocomplete="current-password" />
+        <button type="submit" class="login-btn">Sign In</button>
+      </form>
 
       <!-- Error feedback -->
       <p id="loginError" class="login-error hidden"></p>
@@ -49,8 +48,6 @@
     </div>
   </div>
 
-  <!-- Google Identity Services must load before auth.js -->
-  <script src="https://accounts.google.com/gsi/client"></script>
   <script src="auth.js"></script>
 </body>
 </html>
