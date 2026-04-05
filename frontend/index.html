@@ -3,54 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign In — AutiSENSE</title>
+  <title>Autism Risk Analysis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="login-body">
+<body>
+  <div class="page">
 
-  <div class="login-page">
-
-    <!-- Floating background orbs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-
-    <div class="login-card">
-
-      <!-- Logo -->
-      <div class="login-logo">
-        <span class="login-logo-icon">🧠</span>
-        <h1>Auti<span class="logo-accent">SENSE</span></h1>
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🧠</span>
+          <div>
+            <h1>Auti<span class="logo-accent">SENSE</span></h1>
+            <p class="tagline">Early autism pre-screening tool</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="disclaimer-pill" role="alert">
+            ⚠ Educational purposes only — not a medical diagnosis
+          </div>
+          <div class="user-info">
+            <span id="userName" class="user-name"></span>
+            <button id="logoutBtn" class="btn btn-logout">Sign Out</button>
+          </div>
+        </div>
       </div>
+    </header>
 
-      <p class="login-tagline">Early autism pre-screening tool</p>
+    <!-- ── Two-column workspace ────────────────────────────── -->
+    <main class="workspace">
 
-      <div class="login-divider"></div>
+      <!-- LEFT: upload panel -->
+      <section class="panel upload-panel" aria-label="Image upload">
+        <div class="panel-header">
+          <h2>Upload Image</h2>
+          <p class="panel-sub">Supported formats: JPEG · PNG · GIF · WEBP · BMP</p>
+        </div>
 
-      <p class="login-desc">
-        Sign in with your Google account to access the analysis tool.
-        No registration needed — your Google account is all you need.
-      </p>
+        <input type="file" id="imageInput" accept="image/*" aria-label="Choose an image file" />
 
-      <!-- Google Sign-In button rendered here by GIS -->
-      <div id="googleSignInDiv" class="google-signin-wrapper"></div>
+        <label for="imageInput" class="drop-zone" id="dropZone">
+          <div class="drop-zone-inner" id="dropZoneInner">
+            <span class="drop-icon">📁</span>
+            <span class="drop-text">Click to choose or drag &amp; drop</span>
+          </div>
+          <div id="previewWrapper" class="preview-wrapper hidden">
+            <img id="imagePreview" src="" alt="Selected image preview" />
+            <p id="fileName" class="file-name"></p>
+          </div>
+        </label>
 
-      <!-- Error feedback -->
-      <p id="loginError" class="login-error hidden"></p>
+        <div id="errorMessage" class="error-message hidden" role="alert"></div>
 
-      <p class="login-footer">
-        By signing in you acknowledge this tool is for
-        <strong>educational purposes only</strong> and does not
-        provide medical diagnosis.
-      </p>
+        <button id="analyzeBtn" class="btn btn-analyze" disabled aria-disabled="true">
+          <span>🔍</span>
+          <span>Analyse Image</span>
+        </button>
+      </section>
 
-    </div>
+      <!-- RIGHT: result panel -->
+      <section class="panel result-panel" aria-label="Analysis results" aria-live="polite">
+
+        <!-- Idle state -->
+        <div id="resultIdle" class="result-state idle-state">
+          <div class="idle-illustration">
+            <div class="idle-ring"></div>
+            <span class="idle-icon">🔬</span>
+          </div>
+          <h3>Ready to Analyse</h3>
+          <p>Upload an image on the left and click <strong>Analyse Image</strong> to view the risk assessment here.</p>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loadingIndicator" class="result-state loading-state hidden">
+          <div class="spinner-ring">
+            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/></svg>
+          </div>
+          <p>Analysing image…</p>
+        </div>
+
+        <!-- Result state -->
+        <div id="resultCard" class="result-state result-content hidden">
+          <div class="panel-header">
+            <h2>Analysis Result</h2>
+          </div>
+
+          <div class="score-ring-wrapper">
+            <svg class="score-ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="50"/>
+              <circle class="ring-fill" id="scoreRingFill" cx="60" cy="60" r="50"/>
+            </svg>
+            <div class="score-center">
+              <span id="riskScore" class="score-number">--</span>
+              <small>risk score</small>
+            </div>
+          </div>
+
+          <div id="riskBadge" class="risk-badge"></div>
+
+          <div class="result-rows">
+            <div class="result-row">
+              <span class="result-label">Risk Level</span>
+              <span id="riskLevel" class="result-value"></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Confidence</span>
+              <span id="confidence" class="result-value"></span>
+            </div>
+            <!-- <div class="result-row">
+              <span class="result-label">Model Source</span>
+              <span id="modelSource" class="result-value model-source"></span>
+            </div> -->
+          </div>
+
+          <!-- <p id="apiDisclaimer" class="api-disclaimer"></p> -->
+
+          <button id="resetBtn" class="btn btn-reset">
+            <span>↩</span>
+            <span>Analyse Another</span>
+          </button>
+        </div>
+
+      </section>
+    </main>
   </div>
 
-  <!-- Google Identity Services must load before auth.js -->
-  <script src="https://accounts.google.com/gsi/client"></script>
   <script src="auth.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
